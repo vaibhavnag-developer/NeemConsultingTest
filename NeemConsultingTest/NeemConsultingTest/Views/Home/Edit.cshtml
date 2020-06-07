@@ -1,0 +1,78 @@
+﻿@model  NeemConsultingTest.Models.StudentModel
+@{
+    ViewBag.Title = "Edit Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20pt !important;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+    {
+    <div style="max-width: 400px;">
+        <h2 class="form-signin-heading">
+            Edit Details
+        </h2>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        <div>
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        <div>
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly="true" });
+        <div>
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(m => m.Gender)
+
+        @Html.DropDownListFor(m => m.Gender, new List<SelectListItem>
+        {
+        new SelectListItem{ Text="Male", Value="Male"},
+        new SelectListItem{ Text="Female", Value="Female" }
+        }, "Select Gender", new { @class = "form-control" })
+
+        <div>
+            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        @Html.LabelFor(m => m.City)
+        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        <div>
+
+            @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+        </div>
+        <br />
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <br />
+        <br />
+        <p class="text-success">@ViewBag.Message</p>
+        <div id="dvMessage" style="display:none" class="text-danger">
+            <strong>text-danger!</strong>
+            <span>@ViewBag.Message</span>
+        </div>
+    </div>}
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/custom-validator")
+}
+</html>
+

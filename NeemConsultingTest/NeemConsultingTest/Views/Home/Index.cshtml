@@ -1,0 +1,156 @@
+﻿@model  NeemConsultingTest.Models.StudentModel
+@{
+	ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<script src="~/Scripts/bootstrap.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+			margin: 20pt !important;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#btnsubmit").click(function () {
+
+				var isboolvar = false;
+				$("#errorFirstName").text("");
+				$("#errorLastName").text("");
+				$("#errorEmail").text("");
+				$("#errorGender").text("");
+				$("#errorCity").text("");
+				$("#InvalidEmail").text("");
+				if ($("#FirstName").val() === "") {
+					$("#errorFirstName").text("First Name is required");
+					isboolvar = true;
+				}
+				if ($("#LastName").val() === "") {
+					
+					$("#errorLastName").text("Last Name is required");
+					isboolvar = true;
+				}
+				if ($("#Email").val() === "") {
+					$("#errorEmail").text("Email is required");
+					isboolvar = true;
+				}
+				else {
+					var pattern = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+					var n = pattern.test($("#Email").val());
+					if (n === false) {
+						$("#InvalidEmail").text("Invalid Email");
+						isboolvar = true;
+					}
+				}
+				if ($("#Gender").val() === "") {
+					$("#errorGender").text("Gender is required");
+					isboolvar = true;
+				}
+				if ($("#City").val() === "") {
+					$("#errorCity").text("City Name is required");
+					isboolvar = true;
+				}
+				if (isboolvar) {
+					return false;;
+				}
+				$.ajax(
+					{
+						type: "POST", //HTTP POST Method
+						url: "Home/Index", // Controller/View
+						data: { //Passing data
+							FirstName: $("#FirstName").val(), //Reading text box values using Jquery
+							LastName: $("#LastName").val(),
+							Gender: $("#Gender").val(),
+							Email: $("#Email").val(),
+							City: $("#City").val(),
+						},
+						success: function (data) {
+							if (data === "Data recorded successfully") {
+								$("#FirstName").val("");
+								$("#LastName").val("");
+								$("#Gender").val("");
+								$("#Email").val("");
+								$("#City").val("");
+							}
+
+							alert(data);
+						}
+					}
+
+				);
+
+			});
+		});
+
+	</script>
+</head>
+<body>
+	@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { name = "frm", id = "frm" }))
+	{
+		<div style="max-width: 400px;">
+			<h2 class="form-signin-heading">
+				Add Details
+			</h2>
+			@Html.LabelFor(m => m.FirstName)
+			@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+
+			<div>
+				<span id="errorFirstName"></span>
+			</div>
+			<br />
+			@Html.LabelFor(m => m.LastName)
+			@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+			<div>
+				@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+				<span id="errorLastName"></span>
+			</div>
+		</div>
+		<br />
+		@Html.LabelFor(m => m.Email)
+		@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+		<div>
+			@*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+			<span id="errorEmail"></span>
+			<span id="InvalidEmail"></span>
+		</div>
+		<br />
+		@Html.LabelFor(m => m.Gender)
+
+		@Html.DropDownListFor(m => m.Gender, new List<SelectListItem>
+		{
+		new SelectListItem{ Text="Male", Value="Male"},
+		new SelectListItem{ Text="Female", Value="Female" }
+		}, "Select Gender", new { @class = "form-control" })
+
+		<div>
+			@*@Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })*@
+			<span id="errorGender"></span>
+		</div>
+		<br />
+		@Html.LabelFor(m => m.City)
+		@Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+		<div>
+			@*@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })*@
+			<span id="errorCity"></span>
+		</div>
+		<br />
+		<input type="button" value="Submit" name="btnsubmit" id="btnsubmit" class="btn btn-primary" />
+		<br />
+		<br />
+		<p class="text-success">@ViewBag.Message</p>
+		<div id="dvMessage" style="display:none" class="text-danger">
+			<strong>text-danger!</strong>
+			<span>@ViewBag.Message</span>
+		</div>
+
+	}
+</body>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/custom-validator")
+}
+</html>

@@ -1,0 +1,74 @@
+﻿@model  IEnumerable<NeemConsultingTest.Models.StudentModel>
+@{
+	ViewBag.Title = "About Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<script src="~/Scripts/bootstrap.js"></script>
+	<script src="~/Scripts/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+			margin: 20pt !important;
+		}
+	</style>
+</head>
+<body>
+
+	<div style="max-width: 400px;">
+		<h2 class="form-signin-heading">
+			Personal Details
+		</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Gender</th>
+					<th scope="col">City</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(m => item.FirstName)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.LastName)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.Gender)
+						</td>
+						<td>
+							@Html.DisplayFor(m => item.City)
+						</td>
+						<td>
+							@Html.ActionLink("Edit", "Edit", new { id = item.PersonId })
+						</td>
+
+						<td>
+							@Html.ActionLink("Delete", "Delete", new { id = item.PersonId })
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+</body>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/custom-validator")
+}
+</html>

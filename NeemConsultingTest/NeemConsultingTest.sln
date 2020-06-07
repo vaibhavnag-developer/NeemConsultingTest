@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29430.225
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeemConsultingTest", "NeemConsultingTest\NeemConsultingTest.csproj", "{0DA75A5E-0276-49BA-B07B-0C9908B2FBA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeemConsultingTest_DATA", "NeemConsultingTest_DATA\NeemConsultingTest_DATA.csproj", "{F7696886-E648-476F-BBA4-C2F7477D2C82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DA75A5E-0276-49BA-B07B-0C9908B2FBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DA75A5E-0276-49BA-B07B-0C9908B2FBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DA75A5E-0276-49BA-B07B-0C9908B2FBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DA75A5E-0276-49BA-B07B-0C9908B2FBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7696886-E648-476F-BBA4-C2F7477D2C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7696886-E648-476F-BBA4-C2F7477D2C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7696886-E648-476F-BBA4-C2F7477D2C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7696886-E648-476F-BBA4-C2F7477D2C82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8F1E923-679B-4A22-86CE-02AE6FC7B036}
+	EndGlobalSection
+EndGlobal
